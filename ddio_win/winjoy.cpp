@@ -234,12 +234,6 @@ bool joy_IsValid(tJoystick handle)
 void joy_GetRawPos(tJoystick joy, tJoyPos *pos)
 {
 	joy_GetPos(joy, pos);
-	pos->x = (pos->x+128)*JOYAXIS_RANGE;
-	pos->y = (pos->y+128)*JOYAXIS_RANGE;
-	pos->z = (pos->z+128)*JOYAXIS_RANGE;
-	pos->r = (pos->r+128)*JOYAXIS_RANGE;
-	pos->u = (pos->u+128)*JOYAXIS_RANGE;
-	pos->v = (pos->v+128)*JOYAXIS_RANGE;
 }
 
 
@@ -489,23 +483,23 @@ void joymm_get_pos(tJoystick handle, tJoyPos *pos)
 		return;	
 	}
 	
-	pos->x = (int)((ji.dwXpos<<8)/(caps->maxx - caps->minx)) - 128;
-	pos->y = (int)((ji.dwYpos<<8)/(caps->maxy - caps->miny)) - 128;
+	pos->x = ji.dwXpos;
+	pos->y = ji.dwYpos;
 
 	if (caps->axes_mask & JOYFLAG_ZVALID) {
-		pos->z = (int)((ji.dwZpos<<8)/(caps->maxz - caps->minz)) - 128;
+		pos->z = ji.dwZpos;
 	}
 	else { pos->z = 0; }
 	if (caps->axes_mask & JOYFLAG_RVALID) {
-		pos->r = (int)((ji.dwRpos<<8)/(caps->maxr - caps->minr)) - 128;
+		pos->r = ji.dwRpos;
 	}
 	else { pos->r = 0; }
 	if (caps->axes_mask & JOYFLAG_UVALID) {
-		pos->u = (int)((ji.dwUpos<<8)/(caps->maxu - caps->minu)) - 128;
+		pos->u = ji.dwUpos;
 	}
 	else { pos->u = 0; }
 	if (caps->axes_mask & JOYFLAG_VVALID) {
-		pos->v = (int)((ji.dwVpos<<8)/(caps->maxv - caps->minv)) - 128;
+		pos->v = ji.dwVpos;
 	}
 	else { pos->v = 0; }
 		
