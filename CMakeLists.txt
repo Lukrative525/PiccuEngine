@@ -245,8 +245,8 @@ ENDIF()
 add_executable(PiccuEngine ${DESCENT3_SOURCES})
 	
 IF (WIN32)
-	if (USE_SDL) #for convenience SDL will compile as a console app, and dump mono there
-		target_link_options(PiccuEngine PUBLIC /SAFESEH:NO /NODEFAULTLIB:LIBC)
+	if (USE_SDL)
+		target_link_options(PiccuEngine PUBLIC /SAFESEH:NO /SUBSYSTEM:WINDOWS /NODEFAULTLIB:LIBC)
 	else()
 		target_link_options(PiccuEngine PUBLIC /SAFESEH:NO /SUBSYSTEM:WINDOWS /NODEFAULTLIB:LIBC)
 	endif()

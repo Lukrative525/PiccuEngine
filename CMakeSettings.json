@@ -7,7 +7,7 @@
       "inheritEnvironments": [ "msvc_x86" ],
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
-      "cmakeCommandArgs": "",
+      "cmakeCommandArgs": "-DUSE_SDL=ON",
       "buildCommandArgs": "",
       "ctestCommandArgs": ""
     }
