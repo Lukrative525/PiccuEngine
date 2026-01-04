@@ -202,48 +202,42 @@ void joy_GetPos(tJoystick joy, tJoyPos* pos)
 	//Read axes
 	if (info.d3info.axes_mask & JOYFLAG_XVALID)
 	{
-		Sint16 axis = SDL_GetJoystickAxis(stick, 0);
-		pos->x = ScaleSDLAxisReading(axis, info.axisbase[0]);
+		pos->x = SDL_GetJoystickAxis(stick, 0);
 	}
 	else
 		pos->x = 0;
 
 	if (info.d3info.axes_mask & JOYFLAG_YVALID)
 	{
-		Sint16 axis = SDL_GetJoystickAxis(stick, 1);
-		pos->y = ScaleSDLAxisReading(axis, info.axisbase[1]);
+		pos->y = SDL_GetJoystickAxis(stick, 1);
 	}
 	else
 		pos->y = 0;
 
 	if (info.d3info.axes_mask & JOYFLAG_ZVALID)
 	{
-		Sint16 axis = SDL_GetJoystickAxis(stick, 2);
-		pos->z = ScaleSDLAxisReading(axis, info.axisbase[2]);
+		pos->z = SDL_GetJoystickAxis(stick, 2);
 	}
 	else
 		pos->z = 0;
 
 	if (info.d3info.axes_mask & JOYFLAG_RVALID)
 	{
-		Sint16 axis = SDL_GetJoystickAxis(stick, 3);
-		pos->r = ScaleSDLAxisReading(axis, info.axisbase[3]);
+		pos->r = SDL_GetJoystickAxis(stick, 3);
 	}
 	else
 		pos->r = 0;
 
 	if (info.d3info.axes_mask & JOYFLAG_UVALID)
 	{
-		Sint16 axis = SDL_GetJoystickAxis(stick, 4);
-		pos->u = ScaleSDLAxisReading(axis, info.axisbase[4]);
+		pos->u = SDL_GetJoystickAxis(stick, 4);
 	}
 	else
 		pos->u = 0;
 
 	if (info.d3info.axes_mask & JOYFLAG_VVALID)
 	{
-		Sint16 axis = SDL_GetJoystickAxis(stick, 5);
-		pos->v = ScaleSDLAxisReading(axis, info.axisbase[5]);
+		pos->v = SDL_GetJoystickAxis(stick, 5);
 	}
 	else
 		pos->v = 0;
@@ -270,12 +264,12 @@ void joy_GetRawPos(tJoystick joy, tJoyPos* pos)
 {
 	joy_GetPos(joy, pos);
 	//I actually hate the Descent 3 controller class so much it's unbelievable
-	pos->x = (pos->x + 128) * JOYAXIS_RANGE;
-	pos->y = (pos->y + 128) * JOYAXIS_RANGE;
-	pos->z = (pos->z + 128) * JOYAXIS_RANGE;
-	pos->r = (pos->r + 128) * JOYAXIS_RANGE;
-	pos->u = (pos->u + 128) * JOYAXIS_RANGE;
-	pos->v = (pos->v + 128) * JOYAXIS_RANGE;
+	pos->x = (pos->x + 32768);
+	pos->y = (pos->y + 32768);
+	pos->z = (pos->z + 32768);
+	pos->r = (pos->r + 32768);
+	pos->u = (pos->u + 32768);
+	pos->v = (pos->v + 32768);
 }
 
 bool joy_IsValid(tJoystick joy)
