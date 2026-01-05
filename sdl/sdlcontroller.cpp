@@ -42,7 +42,8 @@ extern float Mouselook_sensitivity;
 extern float Mouse_sensitivity;
 extern bool Mouse_limitpolling;
 
-#define JOY_DEADZONE	0.00f
+#define JOY_DEADZONE 0.00f
+#define JOY_MIN_DEADZONE 0.00001526f
 #define MOUSE_DEADZONE 0.00f
 
 static float WinControllerTimer = 0.0f;
@@ -680,7 +681,7 @@ float gameSDLController::get_axis_value(sbyte controller, ubyte axis, ct_format 
 	{
 		// really small deadzones will not take joystick drift into account, hence your mouse control will be cancelled out.
 		normalizer = ctldev->normalizer[axisIndex];
-		nullzone = (m_ControlList[controller].deadzone < 0.00f) ? 0.00f : m_ControlList[controller].deadzone;
+		nullzone = (m_ControlList[controller].deadzone < JOY_MIN_DEADZONE) ? JOY_MIN_DEADZONE : m_ControlList[controller].deadzone;
 	}
 
 	// joystick needs to be normalized to -1.0 to 1.0
